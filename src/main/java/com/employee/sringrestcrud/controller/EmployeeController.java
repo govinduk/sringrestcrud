@@ -62,4 +62,23 @@ public class EmployeeController {
 
     }
 
+    @RequestMapping(value = "/employee/{eid}", method = RequestMethod.POST)
+    public ResponseEntity updateEmployee(@PathVariable("eid") long eid,@RequestBody Employee employee){
+
+        if(employeeSevice.existsById(eid)){
+            Employee employee1=new Employee();
+            employee1.setId(employee.getId());
+            employee1.setCity(employee.getCity());
+            employee1.setId(employee.getId());
+            employee1.setComapny(employee.getComapny());
+            employee1.setSalary(employee.getSalary());
+            employee1.setEmpname(employee.getEmpname());
+            employeeSevice.save(employee1);
+
+        }
+        return new ResponseEntity<Employee>(HttpStatus.OK);
+
+    }
+
+
 }
